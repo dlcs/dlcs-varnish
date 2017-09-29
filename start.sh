@@ -1,0 +1,24 @@
+#!/bin/bash
+
+aws s3 cp ${S3_VCL_FILE} /etc/varnish/default.vcl
+
+RELOAD_VCL=1
+VARNISH_STORAGE_FILE=${VARNISH_CACHE_FOLDER}/varnish_cache.bin
+VARNISH_STORAGE="file,30G,${VARNISH_STORAGE_FILE}"
+VARNISH_VCL_CONF=/etc/varnish/default.vcl
+
+VARNISH_LISTEN_ADDRESS=0.0.0.0
+VARNISH_LISTEN_PORT=80
+
+VARNISH_ADMIN_LISTEN_ADDRESS=127.0.0.1
+VARNISH_ADMIN_LISTEN_PORT=6082
+
+VARNISH_USER=www-data
+VARNISH_GROUP=www-data
+
+# Start varnish and log
+
+varnishd 
+
+varnishlog
+
