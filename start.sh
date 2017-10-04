@@ -18,7 +18,9 @@ VARNISH_GROUP=www-data
 
 # Start varnish and log
 
-varnishd 
+mkdir -p ${VARNISH_CACHE_FOLDER}
+
+varnishd  -f ${VARNISH_VCL_CONF}
 
 varnishlog
 
