@@ -1,7 +1,5 @@
 #!/bin/bash
 
-aws s3 cp ${S3_VCL_FILE} /etc/varnish/default.vcl
-
 RELOAD_VCL=1
 VARNISH_STORAGE_FILE=${VARNISH_CACHE_FOLDER}/varnish_cache.bin
 VARNISH_STORAGE="file,${VARNISH_CACHE_SIZE},${VARNISH_STORAGE_FILE}"
