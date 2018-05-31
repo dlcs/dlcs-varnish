@@ -20,5 +20,6 @@ VARNISH_GROUP=www-data
 
 mkdir -p ${VARNISH_CACHE_FOLDER}
 
-varnishd -F -f ${VARNISH_VCL_CONF}
+varnishd -f ${VARNISH_VCL_CONF}
 
+varnishlog
