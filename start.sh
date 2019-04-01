@@ -8,6 +8,6 @@ RELOAD_VCL=1
 
 mkdir -p ${VARNISH_CACHE_FOLDER}
 
-varnishd -a 0.0.0.0:80 -T 127.0.0.1:6082 -f /etc/varnish/default.vcl -s file,${VARNISH_CACHE_SIZE},${VARNISH_STORAGE_FOLDER}/varnish_cache.bin
+varnishd -a 0.0.0.0:80 -T 127.0.0.1:6082 -f /etc/varnish/default.vcl -s file,${VARNISH_STORAGE_FOLDER}/varnish_cache.bin,${VARNISH_CACHE_SIZE}
 
 varnishlog
