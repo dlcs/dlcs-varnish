@@ -1,3 +1,5 @@
+# See: https://www.varnish-software.com/developers/tutorials/#vcl
+
 backend default {
     .host = "${BACKEND_HOST}";
     .port = "${BACKEND_PORT}";
