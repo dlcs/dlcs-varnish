@@ -18,6 +18,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Set up Docker Buildx
+        id: buildx
         uses: docker/setup-buildx-action@v1
 
       - name: Login to GitHub Container Registry
@@ -33,5 +34,6 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .
+          builder: ${{ steps.buildx.outputs.name }}
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ github.sha }}
