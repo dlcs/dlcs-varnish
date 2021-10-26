@@ -6,7 +6,6 @@ RUN pip install awscli
 COPY start.sh /start.sh
 RUN chmod +x /start.sh
 
-ENV VARNISH_SIZE 100M
 ENV VARNISH_PORT 80
 EXPOSE 80
 
