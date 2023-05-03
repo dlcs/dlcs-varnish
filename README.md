@@ -11,6 +11,7 @@ The following environment files are expected:
 * `S3_VCL_FILE` - The location of a vcl file to use. Expected S3Uri as it is used by [aws s3 cp](https://docs.aws.amazon.com/cli/latest/reference/s3/cp.html) command.
 * `VARNISH_CACHE_FOLDER` - Folder where disk backed cache is stored.
 * `VARNISH_CACHE_SIZE` - Size of cache.
+* `VARNISH_PORT` - Which port Varnish should listen on (defaults to 80)
 
 ## Running
 
@@ -19,7 +20,7 @@ The following environment files are expected:
 docker build -t dlcs-varnish:local .
 
 # run
-sudo docker run -t -i --rm \
+docker run -it --rm \
 	--env AWS_ACCESS_KEY_ID='xxx' \
 	--env AWS_SECRET_ACCESS_KEY='xxx' \
 	--env S3_VCL_FILE='s3://my-bucket/varnish-config.vcl' \
