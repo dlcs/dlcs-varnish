@@ -30,5 +30,15 @@ sub vcl_fetch {
 }
 
 sub vcl_deliver {
+    # Add debug header to see if it's a HIT/MISS and the number of hits, disable when not needed
+    if (obj.hits > 0) {
+        set resp.http.X-Cache = "HIT";
+    } else {
+        set resp.http.X-Cache = "MISS";
+    }
+
+    # Set hits in X-Cache-Hits header
+    set resp.http.X-Cache-Hits = obj.hits;
+
     return(deliver);
 }
