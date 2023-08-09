@@ -1,6 +1,8 @@
 #!/bin/bash
 
-aws s3 cp ${S3_VCL_FILE} /etc/varnish/default.vcl
+#aws s3 cp ${S3_VCL_FILE} /etc/varnish/new.vcl
+
+cp /mnt/varnish/default.vcl /etc/varnish/default.vcl
 
 RELOAD_VCL=1
 
