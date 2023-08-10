@@ -29,19 +29,18 @@ sub vcl_hit {
     return(deliver);
 }
 
-# sub vcl_fetch {
-#     # Get the response. Set the cache lifetime of the response to 1 hour.
-#     set beresp.ttl = 1h;
+sub vcl_backend_response {
+    # Get the response. Set the cache lifetime of the response to 1 hour.
+    set beresp.ttl = 1h;
 
-#     # Indicate that this response is cacheable. This is important.
-#     set beresp.http.X-Cacheable = "YES";
+    # Indicate that this response is cacheable. This is important.
+    set beresp.http.X-Cacheable = "YES";
     
-#     # Now pass this backend response along to the cache to be stored and served.
-#     return(deliver);
-# }
+    # Now pass this backend response along to the cache to be stored and served.
+    return(deliver);
+}
 
 sub vcl_deliver {
-    
     # Add debug header to see if it's a HIT/MISS and the number of hits, disable when not needed
     if (obj.hits > 0) {
         set resp.http.X-Cache = "HIT";
