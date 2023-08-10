@@ -11,13 +11,12 @@ The following environment settings are expected:
 * `S3_VCL_FILE` - The location of a vcl file to use. Expected S3Uri as it is used by [aws s3 cp](https://docs.aws.amazon.com/cli/latest/reference/s3/cp.html) command.
 * `VARNISH_CACHE_FOLDER` - Folder where disk backed cache is stored.
 * `VARNISH_CACHE_SIZE` - Size of cache.
-* `VARNISH_PORT` - Which port Varnish should listen on (defaults to 80)
 * `AWS_PROFILE` - Required to run locally
 
 The following configuration is optional:
 
 * `VARNISH_ADDRESS` - The location of varnish used by the cleanup handler. Defaults to localhost
-* `AWS_REGION` - The region used by the cleanup handler. Defaults to eu-west-1
+* `AWS_REGION` - The AWS region. Defaults to eu-west-1
 * `USE_LOCAL_CONFIG` - Whether to use a local config file over S3. 
 
 *NOTE:* using `USE_LOCAL_CONFIG` requires a `mount`to be added to the `docker run` containing the VCL
