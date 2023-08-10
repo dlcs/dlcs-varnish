@@ -23,13 +23,13 @@ jobs:
           context: "."
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
-  build-push-thumbs:
+  build-push-dlcs-varnish-cleanup:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/docker-build-and-push
         with:
           image-name: "dlcs-varnish-cleanup"
-          dockerfile: "Dockerfile"
+          dockerfile: "varnish-cleanup/Dockerfile"
           context: "./varnish-cleanup"
           github-token: ${{ secrets.GITHUB_TOKEN }}
