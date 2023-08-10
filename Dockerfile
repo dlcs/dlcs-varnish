@@ -10,7 +10,6 @@ RUN pip install awscli
 COPY start.sh /start.sh
 RUN chmod +x /start.sh
 
-RUN pip install pipenv
 WORKDIR /usr/app/src
 COPY varnish-cleanup/requirements.txt ./
 RUN pip install -r requirements.txt
