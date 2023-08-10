@@ -18,7 +18,7 @@ sub vcl_recv {
         return(synth(200, "Ban added"));
     }
 
-    return(pass);
+    return(hash);
 }
 
 sub vcl_miss {
