@@ -34,4 +34,4 @@ jobs:
           image-name: "dlcs-varnish-cleanup"
           dockerfile: "Dockerfile"
           context: "./varnish-cleanup"
-          github-token: ${{ secrets.GITHUB_TOKEN }
+          github-token: ${{ secrets.GITHUB_TOKEN }}
