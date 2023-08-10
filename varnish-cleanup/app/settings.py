@@ -8,7 +8,6 @@ MONITOR_SLEEP_SECS = float(os.environ.get("MONITOR_SLEEP_SECS", 30))
 # AWS
 REGION = os.environ.get("AWS_REGION", "eu-west-1")
 INCOMING_QUEUE = os.environ.get("INCOMING_QUEUE")
-COMPLETED_TOPIC_ARN = os.environ.get("COMPLETED_TOPIC_ARN")
 
 # LocalStack
 LOCALSTACK = _get_boolean("LOCALSTACK", "False")

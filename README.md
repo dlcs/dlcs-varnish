@@ -12,6 +12,7 @@ The following environment settings are expected:
 * `VARNISH_CACHE_FOLDER` - Folder where disk backed cache is stored.
 * `VARNISH_CACHE_SIZE` - Size of cache.
 * `AWS_PROFILE` - Required to run locally
+* `INCOMING_QUEUE` - the name of the queue that the cleanup handler listens to
 
 The following configuration is optional:
 

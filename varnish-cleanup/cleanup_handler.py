@@ -5,7 +5,7 @@ import requests
 
 from logzero import logger
 from app.aws_factory import get_aws_resource
-from app.settings import INCOMING_QUEUE, MONITOR_SLEEP_SECS, COMPLETED_TOPIC_ARN, VARNISH_ADDRESS
+from app.settings import INCOMING_QUEUE, MONITOR_SLEEP_SECS, VARNISH_ADDRESS
 from app.signal_handler import SignalHandler
 
 
@@ -51,9 +51,7 @@ def _get_messages_from_queue(queue):
 def _handle_message(received_message):
     logger.debug(received_message)
     message = json.loads(received_message.body)
-    delivery_channels = message["asset"]["deliveryChannels"]
-
-    id = _convert_asset_id(message["asset"]["id"], message["customerPathElement"]["name"])
+    id = _convert_asset_id(message["asset"]["id"])
     success = True
 
     varnishUrl = f"{VARNISH_ADDRESS}/{id}"
@@ -72,7 +70,7 @@ def _handle_message(received_message):
     return success
 
 
-def _convert_asset_id(id, name):
+def _convert_asset_id(id):
     customer = id["customer"]
     space = id["space"]
     asset = id["asset"]

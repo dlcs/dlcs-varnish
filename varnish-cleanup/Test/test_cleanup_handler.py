@@ -48,7 +48,7 @@ def test_receive_message_bans():
     sqs_mock_message.body = data
 
     with requests_mock.Mocker() as mo:
-        mo.request("BAN", url="http://localhost:65345/26/18/54378677")
+        mo.request("BAN", url="http://localhost/26/18/54378677")
 
         # Act
         response = cleanup_handler._handle_message(sqs_mock_message)
@@ -66,7 +66,7 @@ def test_receive_message_bans_fail():
     sqs_mock_message.body = data
 
     with requests_mock.Mocker() as mo:
-        mo.request("BAN", url="http://localhost:65345/26/18/54378677", status_code=400)
+        mo.request("BAN", url="http://localhost/26/18/54378677", status_code=400)
 
         # Act
         response = cleanup_handler._handle_message(sqs_mock_message)
