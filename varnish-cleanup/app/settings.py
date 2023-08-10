@@ -15,4 +15,4 @@ LOCALSTACK = _get_boolean("LOCALSTACK", "False")
 LOCALSTACK_ADDRESS = os.environ.get("LOCALSTACK_ADDRESS", "http://localhost:4566")
 
 # varnish
-VARNISH_ADDRESS = os.environ.get("VARNISH_ADDRESS", "http://localhost:65345")
+VARNISH_ADDRESS = os.environ.get("VARNISH_ADDRESS", "http://localhost")

@@ -1,8 +1,13 @@
 #!/bin/bash
 
-#aws s3 cp ${S3_VCL_FILE} /etc/varnish/new.vcl
-
-cp /mnt/varnish/default.vcl /etc/varnish/default.vcl
+if [ "$USE_LOCAL_CONFIG" = true ]
+then
+  echo 'Using local config!'
+  cp /mnt/varnish/default.vcl /etc/varnish/default.vcl
+else
+  echo 'Using s3 config!'
+  aws s3 cp ${S3_VCL_FILE} /etc/varnish/default.vcl
+fi
 
 RELOAD_VCL=1
 

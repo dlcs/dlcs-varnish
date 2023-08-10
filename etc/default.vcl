@@ -7,7 +7,7 @@ backend default {
 }
 
 sub vcl_recv {
-    #set req.backend = default;
+    set req.backend_hint = default;
 
     if (req.method == "BAN") {
 
