@@ -11,7 +11,9 @@ sub vcl_recv {
 
     if (req.method == "BAN") {
 
-        ban("obj.http.x-cache-tags ~ " + req.url);
+        set req.url = regsub(req.url, "^(\/)", "");
+
+        ban("obj.http.x-asset-id == " + req.url);
 
         # Throw a synthetic page so the
         # request won't go to the backend.
