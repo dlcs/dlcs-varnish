@@ -10,6 +10,13 @@ RUN pip install awscli
 COPY start.sh /start.sh
 RUN chmod +x /start.sh
 
+WORKDIR /usr/app/src
+COPY varnish-cleanup/requirements.txt ./
+RUN pip install -r requirements.txt
+
+COPY varnish-cleanup/cleanup_handler.py ./
+COPY varnish-cleanup/app ./app
+
 ENV VARNISH_PORT 80
 EXPOSE 80
 

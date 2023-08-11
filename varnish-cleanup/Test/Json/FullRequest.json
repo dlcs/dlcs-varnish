@@ -1,0 +1,60 @@
+{
+    "asset": {
+      "batch": 0,
+      "created": "2023-08-07T09:27:35.487625Z",
+      "customer": 26,
+      "deliveryChannels": [
+        "iiif-img",
+        "iiif-av",
+        "file"
+      ],
+      "duration": 0,
+      "error": "",
+      "family": 73,
+      "finished": "2023-08-07T09:27:37.248125Z",
+      "fullImageOptimisationPolicy": {
+        "customer": 0,
+        "global": false,
+        "id": null,
+        "name": null,
+        "technicalDetails": null
+      },
+      "fullThumbnailPolicy": null,
+      "height": 4149,
+      "id": {
+        "asset": "54378677",
+        "customer": 26,
+        "space": 18
+      },
+      "imageOptimisationPolicy": "fast-higher",
+      "ingesting": false,
+      "initialOrigin": null,
+      "maxUnauthorised": -1,
+      "mediaType": "image/jpg",
+      "notForDelivery": false,
+      "numberReference1": 0,
+      "numberReference2": 0,
+      "numberReference3": 0,
+      "origin": "https://www.nasa.gov/sites/default/files/thumbnails/image/as11-44-6552.jpeg",
+      "preservedUri": "",
+      "reference1": "",
+      "reference2": "",
+      "reference3": "",
+      "requiresAuth": false,
+      "roles": "",
+      "rolesList": [
+      ],
+      "space": 18,
+      "tags": "sb",
+      "tagsList": [
+        "sb"
+      ],
+      "thumbnailPolicy": "default",
+      "width": 4149
+    },
+    "customerPathElement": {
+      "id": 26,
+      "name": "jacklewis"
+    }
+  }
+
