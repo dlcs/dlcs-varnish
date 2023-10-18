@@ -65,7 +65,7 @@ def _handle_message(received_message):
         logger.debug(f"banned {id}")
     else:
         success = False
-        logger.error(f"failed to ban {id} - {response.content}")
+        logger.error(f"failed to ban {id} - {response.status_code} {response.text}")
 
     return success
 
