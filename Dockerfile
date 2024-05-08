@@ -7,12 +7,12 @@ LABEL org.opencontainers.image.description="Varnish on Ubuntu, vcl sourced from 
 RUN apt-get update -y && apt-get install -y varnish python3-pip
 RUN pip install awscli
 
-COPY start.sh /start.sh
-RUN chmod +x /start.sh
-
 WORKDIR /usr/app/src
 COPY varnish-cleanup/requirements.txt ./
 RUN pip install -r requirements.txt
+
+COPY start.sh /start.sh
+RUN chmod +x /start.sh
 
 COPY varnish-cleanup/cleanup_handler.py ./
 COPY varnish-cleanup/app ./app
