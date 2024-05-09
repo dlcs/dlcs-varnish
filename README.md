@@ -35,14 +35,14 @@ docker run -it --rm \
 	--env VARNISH_CACHE_SIZE='100M' \
 	--env-file='/path/to/env' \
 	{REQUIRED FOR LOCAL RUNNING}--volume $HOME\.aws\credentials:/root/.aws/credentials:ro \
-	{OPTIONAL}--mount type=bind,source=.\etc\default.vcl,target=/mnt/varnish/default.vcl \
+	{OPTIONAL}--volume ./etc/:/mnt/varnish/ \
 	dlcs-varnish:local
 ```
-# varnish-cleanup
+## varnish-cleanup
 
 Additionally, there is a standalone docker container for the cleanup handler. 
 
-## Configuration
+### Configuration
 
 Required:
 * `AWS_PROFILE` - Required to run locally
