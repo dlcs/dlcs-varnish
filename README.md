@@ -12,10 +12,11 @@ The following environment settings are expected:
 * `VARNISH_CACHE_FOLDER` - Folder where disk backed cache is stored.
 * `VARNISH_CACHE_SIZE` - Size of cache.
 * `AWS_PROFILE` - Required to run locally
-* `INCOMING_QUEUE` - the name of the queue that the cleanup handler listens to
 
 The following configuration is optional:
 
+* `VARNISH_CACHE_FILE` - The name of varnish [storage file](https://varnish-cache.org/docs/trunk/users-guide/storage-backends.html#file) (e.g. `varnish_cache.bin`). If specified it is appended to `VARNISH_CACHE_FOLDER` to create file (if unspecified folder only is used)
+* `INCOMING_QUEUE` - the name of the queue that the cleanup handler listens to
 * `VARNISH_ADDRESS` - The location of varnish used by the cleanup handler. Defaults to localhost
 * `AWS_REGION` - The AWS region. Defaults to eu-west-1
 * `USE_LOCAL_CONFIG` - Whether to use a local config file over S3. 
@@ -34,14 +35,14 @@ docker run -it --rm \
 	--env VARNISH_CACHE_SIZE='100M' \
 	--env-file='/path/to/env' \
 	{REQUIRED FOR LOCAL RUNNING}--volume $HOME\.aws\credentials:/root/.aws/credentials:ro \
-	{OPTIONAL}--mount type=bind,source=.\etc\default.vcl,target=/mnt/varnish/default.vcl \
+	{OPTIONAL}--volume ./etc/:/mnt/varnish/ \
 	dlcs-varnish:local
 ```
-# varnish-cleanup
+## varnish-cleanup
 
 Additionally, there is a standalone docker container for the cleanup handler. 
 
-## Configuration
+### Configuration
 
 Required:
 * `AWS_PROFILE` - Required to run locally

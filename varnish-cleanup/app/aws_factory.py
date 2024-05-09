@@ -1,5 +1,4 @@
 import boto3
-from moto import sqs
 
 from app.settings import LOCALSTACK, REGION, LOCALSTACK_ADDRESS
 from logzero import logger
