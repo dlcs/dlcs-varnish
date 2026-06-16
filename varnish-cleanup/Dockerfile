@@ -1,5 +1,4 @@
-#Pinning to 3.12 for dependencies
-FROM python:3.12
+FROM python:3.11
 
 
 #Labels as key value pair
