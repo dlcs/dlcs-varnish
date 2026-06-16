@@ -51,7 +51,7 @@ def _get_messages_from_queue(queue):
 def _handle_message(received_message):
     logger.debug(received_message)
     message = json.loads(received_message.body)
-    id = _convert_asset_id(message["asset"]["id"])
+    id = _convert_asset_id(message["deliverable"]["id"])
     success = True
 
     varnishUrl = f"{VARNISH_ADDRESS}/{id}"
