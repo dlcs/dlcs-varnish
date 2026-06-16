@@ -1,4 +1,4 @@
-#Deriving the latest base image
+#Pinning to 3.12 for dependencies
 FROM python:3.12
 
 
