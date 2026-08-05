@@ -20,6 +20,8 @@ The following configuration is optional:
 * `VARNISH_ADDRESS` - The location of varnish used by the cleanup handler. Defaults to localhost
 * `AWS_REGION` - The AWS region. Defaults to eu-west-1
 * `USE_LOCAL_CONFIG` - Whether to use a local config file over S3. 
+* `VARNISH_VSL_MASK` - Controls which [VSL tags](https://varnish-cache.org/docs/trunk/reference/vsl.html) varnish records, passed to `varnishd` as `-p vsl_mask=`. Prefix a tag with `-` to suppress it, `+` to enable. If unspecified varnish defaults are used. e.g. `-ReqHeader,-RespHeader,-BereqHeader,-BerespHeader,-VCL_call,-VCL_return`
+* `VARNISHLOG_QUERY` - A [VSL query](https://varnish-cache.org/docs/trunk/reference/vsl-query.html) limiting which transactions `varnishncsa` writes to stdout, passed as `-q`. If unspecified all transactions are logged. e.g. `RespStatus >= 400`
 
 *NOTE:* using `USE_LOCAL_CONFIG` requires a `mount`to be added to the `docker run` containing the VCL
 ## Running
@@ -38,6 +40,38 @@ docker run -it --rm \
 	{OPTIONAL}--volume ./etc/:/mnt/varnish/ \
 	dlcs-varnish:local
 ```
+## Local development
+
+A `docker-compose.yml` is provided that runs Varnish in front of [go-httpbin](https://github.com/mccutchen/go-httpbin) as a test backend.
+
+```bash
+docker compose up --build
+```
+
+Varnish is available at `http://localhost:8080` and the backend directly at `http://localhost:8081`. The `X-Cache` response header shows `HIT` or `MISS`.
+
+```bash
+# First request is a MISS, repeating it is a HIT
+curl -i http://localhost:8080/get
+curl -i http://localhost:8080/headers
+
+# Test specific status codes
+curl -i http://localhost:8080/status/404
+curl -i http://localhost:8080/status/200
+
+# Simulate a slow backend response
+curl -i http://localhost:8080/delay/2
+
+# Hit the backend directly to compare what Varnish adds/strips
+curl -i http://localhost:8081/get
+```
+
+To force a cache miss for a specific path, send a BAN request:
+
+```bash
+curl -X BAN http://localhost:8080/get
+```
+
 ## varnish-cleanup
 
 Additionally, there is a standalone docker container for the cleanup handler. 
