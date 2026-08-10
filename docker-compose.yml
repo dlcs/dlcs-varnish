@@ -1,0 +1,23 @@
+services:
+  varnish:
+    build: .
+    ports:
+      - "8080:80"
+    environment:
+      USE_LOCAL_CONFIG: "true"
+      VARNISH_CACHE_FOLDER: /var/cache/varnish
+      VARNISH_CACHE_FILE: cache.bin
+      VARNISH_CACHE_SIZE: 100M
+    volumes:
+      - ./etc/dev.vcl:/mnt/varnish/default.vcl
+      - varnish-cache:/var/cache/varnish
+    depends_on:
+      - backend
+
+  backend:
+    image: mccutchen/go-httpbin
+    ports:
+      - "8081:8080"
+
+volumes:
+  varnish-cache:
