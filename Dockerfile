@@ -2,7 +2,7 @@ FROM debian:bookworm-slim
 
 LABEL maintainer="Donald Gray <donald.gray@digirati.com>"
 LABEL org.opencontainers.image.source=https://github.com/dlcs/dlcs-varnish
-LABEL org.opencontainers.image.description="Varnish on Ubuntu, vcl sourced from S3"
+LABEL org.opencontainers.image.description="Varnish on Debian, vcl sourced from S3"
 
 ENV DEBIAN_FRONTEND=noninteractive
 
