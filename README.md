@@ -11,19 +11,22 @@ The following environment settings are expected:
 * `S3_VCL_FILE` - The location of a vcl file to use. Expected S3Uri as it is used by [aws s3 cp](https://docs.aws.amazon.com/cli/latest/reference/s3/cp.html) command.
 * `VARNISH_CACHE_FOLDER` - Folder where disk backed cache is stored.
 * `VARNISH_CACHE_SIZE` - Size of cache.
-* `AWS_PROFILE` - Required to run locally
 
 The following configuration is optional:
 
 * `VARNISH_CACHE_FILE` - The name of varnish [storage file](https://varnish-cache.org/docs/trunk/users-guide/storage-backends.html#file) (e.g. `varnish_cache.bin`). If specified it is appended to `VARNISH_CACHE_FOLDER` to create file (if unspecified folder only is used)
 * `INCOMING_QUEUE` - the name of the queue that the cleanup handler listens to
 * `VARNISH_ADDRESS` - The location of varnish used by the cleanup handler. Defaults to localhost
+* `AWS_PROFILE` - Required to run locally
 * `AWS_REGION` - The AWS region. Defaults to eu-west-1
 * `USE_LOCAL_CONFIG` - Whether to use a local config file over S3. 
 * `VARNISH_VSL_MASK` - Controls which [VSL tags](https://varnish-cache.org/docs/trunk/reference/vsl.html) varnish records, passed to `varnishd` as `-p vsl_mask=`. Prefix a tag with `-` to suppress it, `+` to enable. If unspecified varnish defaults are used. e.g. `-ReqHeader,-RespHeader,-BereqHeader,-BerespHeader,-VCL_call,-VCL_return`
 * `VARNISHLOG_QUERY` - A [VSL query](https://varnish-cache.org/docs/trunk/reference/vsl-query.html) limiting which transactions `varnishncsa` writes to stdout, passed as `-q`. If unspecified all transactions are logged. e.g. `RespStatus >= 400`
+* `VARNISH_PORT` - Which port Varnish should listen on. Defaults to 80
 
-*NOTE:* using `USE_LOCAL_CONFIG` requires a `mount`to be added to the `docker run` containing the VCL
+> [!NOTE]
+> Using `USE_LOCAL_CONFIG` requires a `mount` to be added to the `docker run` containing the VCL
+
 ## Running
 
 ```bash
@@ -78,10 +81,8 @@ Additionally, there is a standalone docker container for the cleanup handler.
 
 ### Configuration
 
-Required:
-* `AWS_PROFILE` - Required to run locally
-
 Optional:
+* `AWS_PROFILE` - Required to run locally
 * `VARNISH_ADDRESS` - The location of varnish used by the cleanup handler. Defaults to localhost
 * `AWS_REGION` - The region used by the cleanup handler. Defaults to eu-west-1
 
